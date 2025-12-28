@@ -73,7 +73,7 @@
                                 <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
                                 <input type="tel" id="phone" name="phone" 
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300"
-                                    placeholder="+1 (555) 123-4567">
+                                    placeholder="+91 9560847496">
                             </div>
                             
                             <div>
@@ -117,8 +117,8 @@
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
-                                        <a href="mailto:info@fightfromdiseases.com" class="text-gray-600 hover:text-[#0a4d78] transition-colors">
-                                            info@fightfromdiseases.com
+                                        <a href="mailto:contact@fightfromdiseases.com" class="text-gray-600 hover:text-[#0a4d78] transition-colors">
+                                            contact@fightfromdiseases.com
                                         </a>
                                     </div>
                                 </div>
@@ -131,8 +131,8 @@
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
-                                        <a href="tel:+15551234567" class="text-gray-600 hover:text-[#0a4d78] transition-colors">
-                                            +1 (555) 123-4567
+                                        <a href="tel:+919560847496" class="text-gray-600 hover:text-[#0a4d78] transition-colors">
+                                            +91 9560847496
                                         </a>
                                     </div>
                                 </div>
@@ -147,15 +147,14 @@
                                     <div>
                                         <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
                                         <p class="text-gray-600">
-                                            123 Health Street<br>
-                                            Wellness City, WC 12345<br>
-                                            United States
+                                            Pitampura, New Delhi<br>
+                                            India<br>
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="border-t border-gray-200 pt-6">
+                            <!-- <div class="border-t border-gray-200 pt-6">
                                 <h3 class="font-semibold text-gray-900 mb-4">Business Hours</h3>
                                 <div class="space-y-2 text-gray-600">
                                     <div class="flex justify-between">
@@ -171,7 +170,7 @@
                                         <span>Closed</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -179,13 +178,33 @@
         </div>
     </section>
 
-    <!-- Map Section (Optional) -->
+    <!-- Map Section -->
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Find Us</h2>
-                <div class="bg-gray-200 rounded-2xl overflow-hidden shadow-xl h-96 flex items-center justify-center">
-                    <p class="text-gray-500">Map integration can be added here</p>
+                <div class="rounded-2xl overflow-hidden shadow-xl h-96">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14014.567890123456!2d77.1061207!3d28.7036738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03d5b0619f3f%3A0x2208402cf282fb02!2sPitampura%2C%20Delhi%2C%20110034!5e0!3m2!1sen!2sin!4v1630000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="w-full h-full">
+                    </iframe>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="https://maps.app.goo.gl/L28XQ1MX1hgMrC6m8" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center text-[#0a4d78] hover:text-[#0a5a8a] transition-colors font-semibold">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                        Open in Google Maps
+                    </a>
                 </div>
             </div>
         </div>
