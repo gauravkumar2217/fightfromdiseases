@@ -40,7 +40,7 @@
                     </div>
                     <div class="slide-right">
                         <div class="bg-gradient-to-br from-[#e0f4f8] to-[#9fd7e4] rounded-2xl p-8 shadow-xl">
-                            <img src="https://img.freepik.com/free-vector/healthcare-professionals-team_23-2148486003.jpg" alt="Healthcare Team" class="w-full h-auto rounded-lg">
+                            <img src="{{ asset('assets/images/about1.png') }}" alt="Healthcare Team" class="w-full h-auto rounded-lg">
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="slide-right order-2 md:order-1">
                         <div class="bg-gradient-to-br from-[#d1f0f8] to-[#b8e3ed] rounded-2xl p-8 shadow-xl">
-                            <img src="https://img.freepik.com/free-vector/healthcare-medical-concept_23-2148486004.jpg" alt="Healthcare Vision" class="w-full h-auto rounded-lg">
+                            <img src="{{ asset('assets/images/about2.png') }}" alt="Healthcare Vision" class="w-full h-auto rounded-lg">
                         </div>
                     </div>
                     <div class="slide-left order-1 md:order-2">
