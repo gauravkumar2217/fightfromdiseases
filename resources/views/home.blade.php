@@ -62,6 +62,60 @@
         </div>
     </section>
 
+    <!-- About Us - Mission & Vision Section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-white to-[#9fd7e4]/10">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16 slide-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Us</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Connecting international patients with world-class healthcare in India
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Mission Card -->
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up border-t-4 border-[#0a4d78]">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#0a4d78] to-[#0a5a8a] rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900">Our Mission</h3>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        To connect international patients with trusted hospitals, renowned doctors, and affordable world-class treatments in India, ensuring a seamless and compassionate medical journey.
+                    </p>
+                </div>
+
+                <!-- Vision Card -->
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up border-t-4 border-[#9fd7e4]">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#9fd7e4] to-[#0a4d78] rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900">Our Vision</h3>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        To become a globally recognized medical tourism facilitator known for ethical practices, patient-centric care, and long-term international healthcare partnerships.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="mt-12 max-w-4xl mx-auto text-center slide-up">
+                <div class="bg-gradient-to-r from-[#0a4d78]/10 to-[#9fd7e4]/10 rounded-2xl p-8 border border-[#0a4d78]/20">
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        At <strong class="text-[#0a4d78]">Fight From Diseases</strong>, we are committed to making world-class healthcare accessible to patients from around the globe. Our dedicated team works tirelessly to ensure every patient receives personalized care, transparent communication, and the best possible medical outcomes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Partner Hospitals Section -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
