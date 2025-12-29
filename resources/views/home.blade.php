@@ -11,7 +11,7 @@
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1920&q=80" 
+            <img src="{{ $getSetting('banner_image_url', 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1920&q=80') }}" 
                  alt="Medical Tourism in India" 
                  class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-[#0a4d78]/90 to-[#0a4d78]/70"></div>
@@ -20,22 +20,34 @@
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
             <div class="max-w-5xl mx-auto text-center text-white">
                 <div class="fade-in">
+                    @if($getSetting('banner_badge_text'))
                     <div class="inline-block px-4 py-2 bg-[#9fd7e4]/20 backdrop-blur-sm rounded-full mb-6 border border-[#9fd7e4]/30">
-                        <span class="text-[#9fd7e4] font-semibold">Serving patients from 20+ countries</span>
+                        <span class="text-[#9fd7e4] font-semibold">{{ $getSetting('banner_badge_text', 'Serving patients from 20+ countries') }}</span>
                     </div>
+                    @endif
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                        World-Class Medical Care in <span class="text-[#9fd7e4]">India</span>
+                        @php
+                            $heading = $getSetting('banner_heading', 'World-Class Medical Care in India');
+                            $highlight = $getSetting('banner_heading_highlight', 'India');
+                        @endphp
+                        @if($highlight && strpos($heading, $highlight) !== false)
+                            @php
+                                $headingParts = explode($highlight, $heading, 2);
+                            @endphp
+                            {!! $headingParts[0] !!}<span class="text-[#9fd7e4]">{{ $highlight }}</span>{!! $headingParts[1] ?? '' !!}
+                        @else
+                            {{ $heading }}
+                        @endif
                     </h1>
                     <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-gray-100">
-                        Connect with trusted hospitals, renowned doctors, and affordable world-class treatments. 
-                        Experience a seamless and compassionate medical journey.
+                        {{ $getSetting('banner_description', 'Connect with trusted hospitals, renowned doctors, and affordable world-class treatments. Experience a seamless and compassionate medical journey.') }}
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <button data-open-modal class="px-8 py-4 bg-[#0a4d78] text-white rounded-lg font-semibold text-lg hover:bg-[#0a5a8a] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                            Contact Us
+                        <button data-open-modal="contactModal" class="px-8 py-4 bg-[#0a4d78] text-white rounded-lg font-semibold text-lg hover:bg-[#0a5a8a] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                            {{ $getSetting('banner_button1_text', 'Contact Us') }}
                         </button>
-                        <a href="#specialities" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold text-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl">
-                            View Specialities
+                        <a href="{{ $getSetting('banner_button2_link', '#specialities') }}" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold text-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            {{ $getSetting('banner_button2_text', 'View Specialities') }}
                         </a>
                     </div>
                 </div>

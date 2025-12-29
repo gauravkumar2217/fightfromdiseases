@@ -16,7 +16,7 @@
     @include('components.contact-modal')
 
     <!-- Floating WhatsApp Icon -->
-    <a href="https://wa.me/919560847496" 
+    <a href="https://wa.me/{{ $getSetting('whatsapp_number', '919560847496') }}" 
        target="_blank" 
        rel="noopener noreferrer"
        class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20BA5A] transition-all duration-300 transform hover:scale-110 hover:shadow-3xl group"

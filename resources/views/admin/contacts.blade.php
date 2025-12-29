@@ -4,22 +4,76 @@
 @section('page-title', 'Contact Submissions')
 
 @section('content')
-    <!-- Filter Tabs -->
-    <div class="mb-6 bg-white rounded-xl shadow-lg p-4">
-        <div class="flex space-x-2 border-b border-gray-200">
-            <a href="{{ route('admin.contacts', ['type' => 'all']) }}" 
-               class="px-4 py-2 {{ $type === 'all' ? 'border-b-2 border-[#0a4d78] text-[#0a4d78] font-semibold' : 'text-gray-600 hover:text-[#0a4d78]' }} transition-colors">
-                All Submissions
-            </a>
-            <a href="{{ route('admin.contacts', ['type' => 'contact']) }}" 
-               class="px-4 py-2 {{ $type === 'contact' ? 'border-b-2 border-[#0a4d78] text-[#0a4d78] font-semibold' : 'text-gray-600 hover:text-[#0a4d78]' }} transition-colors">
-                Contact Form
-            </a>
-            <a href="{{ route('admin.contacts', ['type' => 'contacttable2']) }}" 
-               class="px-4 py-2 {{ $type === 'contacttable2' ? 'border-b-2 border-[#0a4d78] text-[#0a4d78] font-semibold' : 'text-gray-600 hover:text-[#0a4d78]' }} transition-colors">
-                Medical Tourism Form
-            </a>
+    <!-- Filter Section -->
+    <div class="mb-6 bg-white rounded-xl shadow-lg p-6">
+        <!-- Filter Tabs -->
+        <div class="mb-6">
+            <div class="flex space-x-2 border-b border-gray-200">
+                <a href="{{ route('admin.contacts', array_merge(request()->except('type'), ['type' => 'all'])) }}" 
+                   class="px-4 py-2 {{ $type === 'all' ? 'border-b-2 border-[#0a4d78] text-[#0a4d78] font-semibold' : 'text-gray-600 hover:text-[#0a4d78]' }} transition-colors">
+                    All Submissions
+                </a>
+                <a href="{{ route('admin.contacts', array_merge(request()->except('type'), ['type' => 'contact'])) }}" 
+                   class="px-4 py-2 {{ $type === 'contact' ? 'border-b-2 border-[#0a4d78] text-[#0a4d78] font-semibold' : 'text-gray-600 hover:text-[#0a4d78]' }} transition-colors">
+                    Contact Form
+                </a>
+                <a href="{{ route('admin.contacts', array_merge(request()->except('type'), ['type' => 'contacttable2'])) }}" 
+                   class="px-4 py-2 {{ $type === 'contacttable2' ? 'border-b-2 border-[#0a4d78] text-[#0a4d78] font-semibold' : 'text-gray-600 hover:text-[#0a4d78]' }} transition-colors">
+                    Medical Tourism Form
+                </a>
+            </div>
         </div>
+
+        <!-- Date Filter Form -->
+        <form method="GET" action="{{ route('admin.contacts') }}" class="flex flex-wrap items-end gap-4">
+            <input type="hidden" name="type" value="{{ $type }}">
+            
+            <div class="flex-1 min-w-[200px]">
+                <label for="date_from" class="block text-sm font-semibold text-gray-700 mb-2">From Date</label>
+                <input type="date" 
+                       id="date_from" 
+                       name="date_from" 
+                       value="{{ $dateFrom }}"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">
+            </div>
+            
+            <div class="flex-1 min-w-[200px]">
+                <label for="date_to" class="block text-sm font-semibold text-gray-700 mb-2">To Date</label>
+                <input type="date" 
+                       id="date_to" 
+                       name="date_to" 
+                       value="{{ $dateTo }}"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">
+            </div>
+            
+            <div class="flex gap-2">
+                <button type="submit" 
+                        class="px-6 py-2 bg-[#0a4d78] text-white rounded-lg font-semibold hover:bg-[#0a5a8a] transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Filter
+                </button>
+                @if($dateFrom || $dateTo)
+                <a href="{{ route('admin.contacts', ['type' => $type]) }}" 
+                   class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                    Clear
+                </a>
+                @endif
+            </div>
+        </form>
+        
+        @if($dateFrom || $dateTo)
+        <div class="mt-4 p-3 bg-[#9fd7e4]/20 rounded-lg">
+            <p class="text-sm text-gray-700">
+                <span class="font-semibold">Filtered by:</span>
+                @if($dateFrom && $dateTo)
+                    {{ \Carbon\Carbon::parse($dateFrom)->format('M d, Y') }} to {{ \Carbon\Carbon::parse($dateTo)->format('M d, Y') }}
+                @elseif($dateFrom)
+                    From {{ \Carbon\Carbon::parse($dateFrom)->format('M d, Y') }}
+                @elseif($dateTo)
+                    Until {{ \Carbon\Carbon::parse($dateTo)->format('M d, Y') }}
+                @endif
+            </p>
+        </div>
+        @endif
     </div>
 
     <!-- Contact Form Submissions -->
@@ -88,7 +142,18 @@
     @if($type === 'all' || $type === 'contacttable2')
     <div class="mb-8 bg-white rounded-xl shadow-lg overflow-hidden">
         <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-[#0a5a8a]/10 to-white">
-            <h2 class="text-xl font-bold text-gray-900">Medical Tourism Form Submissions ({{ $contactTable2->total() }})</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold text-gray-900">Medical Tourism Form Submissions ({{ $contactTable2->total() }})</h2>
+                @if($contactTable2->total() > 0)
+                <a href="{{ route('admin.contacts.export', array_merge(request()->except('page'), ['type' => 'contacttable2'])) }}" 
+                   class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold hover:bg-green-700 transition-colors flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span>Export</span>
+                </a>
+                @endif
+            </div>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full">
@@ -116,10 +181,10 @@
                             <div class="text-sm text-gray-600">{{ $contact->country ?? 'N/A' }}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ $contact->treatment_interest ? \Illuminate\Support\\Illuminate\Support\Str::limit($contact->treatment_interest, 25) : 'N/A' }}</div>
+                            <div class="text-sm text-gray-600">{{ $contact->treatment_interest ? \Illuminate\Support\Str::limit($contact->treatment_interest, 25) : 'N/A' }}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ \Illuminate\Support\\Illuminate\Support\Str::limit($contact->subject, 30) }}</div>
+                            <div class="text-sm text-gray-600">{{ \Illuminate\Support\Str::limit($contact->subject, 30) }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-500">{{ $contact->created_at->format('M d, Y') }}</div>

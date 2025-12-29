@@ -60,7 +60,7 @@
                             <label for="modal_phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
                             <input type="tel" id="modal_phone" name="phone" 
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300"
-                                placeholder="+91 9560847496">
+                                    placeholder="{{ $getSetting('contact_phone', '+91 9560847496') }}">
                         </div>
                         
                         <div>

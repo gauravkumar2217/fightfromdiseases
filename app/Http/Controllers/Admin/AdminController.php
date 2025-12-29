@@ -74,22 +74,46 @@ class AdminController extends Controller
     public function contacts(Request $request)
     {
         $type = $request->get('type', 'all');
+        $dateFrom = $request->get('date_from');
+        $dateTo = $request->get('date_to');
         
         $contacts = collect();
         $contactTable2 = collect();
         
         if ($type === 'all' || $type === 'contact') {
-            $contacts = Contact::latest()->paginate(15, ['*'], 'contact_page');
+            $contactsQuery = Contact::query();
+            
+            // Apply date filters
+            if ($dateFrom) {
+                $contactsQuery->whereDate('created_at', '>=', $dateFrom);
+            }
+            if ($dateTo) {
+                $contactsQuery->whereDate('created_at', '<=', $dateTo);
+            }
+            
+            $contacts = $contactsQuery->latest()->paginate(15, ['*'], 'contact_page')->appends($request->query());
         }
         
         if ($type === 'all' || $type === 'contacttable2') {
-            $contactTable2 = ContactTable2::latest()->paginate(15, ['*'], 'contacttable2_page');
+            $contactTable2Query = ContactTable2::query();
+            
+            // Apply date filters
+            if ($dateFrom) {
+                $contactTable2Query->whereDate('created_at', '>=', $dateFrom);
+            }
+            if ($dateTo) {
+                $contactTable2Query->whereDate('created_at', '<=', $dateTo);
+            }
+            
+            $contactTable2 = $contactTable2Query->latest()->paginate(15, ['*'], 'contacttable2_page')->appends($request->query());
         }
 
         return view('admin.contacts', [
             'contacts' => $contacts,
             'contactTable2' => $contactTable2,
             'type' => $type,
+            'dateFrom' => $dateFrom,
+            'dateTo' => $dateTo,
         ]);
     }
 
@@ -116,5 +140,86 @@ class AdminController extends Controller
             'message' => $contact->message,
             'created_at' => $contact->created_at->format('F j, Y \a\t g:i A'),
         ]);
+    }
+
+    /**
+     * Export contacts to CSV.
+     */
+    public function exportContacts(Request $request)
+    {
+        $type = $request->get('type', 'contact');
+        $dateFrom = $request->get('date_from');
+        $dateTo = $request->get('date_to');
+        
+        $filename = $type === 'contacttable2' ? 'medical-tourism-submissions' : 'contact-form-submissions';
+        if ($dateFrom || $dateTo) {
+            $filename .= '-' . ($dateFrom ?? 'all') . '-' . ($dateTo ?? 'all');
+        }
+        $filename .= '-' . date('Y-m-d') . '.csv';
+        
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+        
+        $callback = function() use ($type, $dateFrom, $dateTo) {
+            $file = fopen('php://output', 'w');
+            
+            if ($type === 'contacttable2') {
+                // Medical Tourism Form Headers
+                fputcsv($file, ['Name', 'Email', 'Phone', 'Country', 'Treatment Interest', 'Subject', 'Message', 'Submitted At']);
+                
+                $query = ContactTable2::query();
+                if ($dateFrom) {
+                    $query->whereDate('created_at', '>=', $dateFrom);
+                }
+                if ($dateTo) {
+                    $query->whereDate('created_at', '<=', $dateTo);
+                }
+                
+                $contacts = $query->latest()->get();
+                
+                foreach ($contacts as $contact) {
+                    fputcsv($file, [
+                        $contact->name,
+                        $contact->email,
+                        $contact->phone ?? '',
+                        $contact->country ?? '',
+                        $contact->treatment_interest ?? '',
+                        $contact->subject,
+                        $contact->message,
+                        $contact->created_at->format('Y-m-d H:i:s'),
+                    ]);
+                }
+            } else {
+                // Contact Form Headers
+                fputcsv($file, ['Name', 'Email', 'Phone', 'Subject', 'Message', 'Submitted At']);
+                
+                $query = Contact::query();
+                if ($dateFrom) {
+                    $query->whereDate('created_at', '>=', $dateFrom);
+                }
+                if ($dateTo) {
+                    $query->whereDate('created_at', '<=', $dateTo);
+                }
+                
+                $contacts = $query->latest()->get();
+                
+                foreach ($contacts as $contact) {
+                    fputcsv($file, [
+                        $contact->name,
+                        $contact->email,
+                        $contact->phone ?? '',
+                        $contact->subject,
+                        $contact->message,
+                        $contact->created_at->format('Y-m-d H:i:s'),
+                    ]);
+                }
+            }
+            
+            fclose($file);
+        };
+        
+        return response()->stream($callback, 200, $headers);
     }
 }

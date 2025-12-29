@@ -25,5 +25,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/contacts', [AdminController::class, 'contacts'])->name('contacts');
         Route::get('/contacts/{id}', [AdminController::class, 'getContactDetails'])->name('contacts.details');
+        Route::get('/contacts-export', [AdminController::class, 'exportContacts'])->name('contacts.export');
+        Route::get('/settings', [\App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');
+        Route::post('/settings', [\App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
+        Route::post('/settings/{key}', [\App\Http\Controllers\Admin\SettingsController::class, 'updateSingle'])->name('settings.update-single');
+        Route::get('/banner', [\App\Http\Controllers\Admin\BannerController::class, 'index'])->name('banner');
+        Route::post('/banner', [\App\Http\Controllers\Admin\BannerController::class, 'update'])->name('banner.update');
     });
 });
