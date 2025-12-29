@@ -14,9 +14,9 @@
                 <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About Us</a>
                 <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
-                <a href="{{ route('contact') }}" class="px-6 py-2.5 bg-[#0a4d78] text-white rounded-lg font-semibold hover:bg-[#0a5a8a] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                <button data-open-modal class="px-6 py-2.5 bg-[#0a4d78] text-white rounded-lg font-semibold hover:bg-[#0a5a8a] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     Get Started
-                </a>
+                </button>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -33,9 +33,9 @@
                 <a href="{{ route('home') }}" class="nav-link-mobile {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about') }}" class="nav-link-mobile {{ request()->routeIs('about') ? 'active' : '' }}">About Us</a>
                 <a href="{{ route('contact') }}" class="nav-link-mobile {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
-                <a href="{{ route('contact') }}" class="px-6 py-3 bg-[#0a4d78] text-white rounded-lg font-semibold text-center hover:bg-[#0a5a8a] transition-all duration-300">
+                <button data-open-modal class="px-6 py-3 bg-[#0a4d78] text-white rounded-lg font-semibold text-center hover:bg-[#0a5a8a] transition-all duration-300 w-full">
                     Get Started
-                </a>
+                </button>
             </div>
         </div>
     </nav>

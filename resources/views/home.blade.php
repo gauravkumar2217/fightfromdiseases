@@ -2,35 +2,40 @@
 
 @section('content')
 @php
-    $metaTitle = 'Fight From Diseases - Your Health, Your Priority | Disease Prevention & Wellness';
-    $metaDescription = 'Join the fight against diseases. Get expert health tips, disease prevention strategies, and wellness resources to protect yourself and your loved ones. Start your health journey today.';
-    $metaKeywords = 'health awareness, disease prevention, wellness, medical tips, health education, preventive healthcare, healthy living';
+    $metaTitle = 'Fight From Diseases - Medical Tourism in India | World-Class Healthcare';
+    $metaDescription = 'Connect with trusted hospitals and renowned doctors in India for affordable world-class medical treatments. Serving patients from 20+ countries with compassionate care.';
+    $metaKeywords = 'medical tourism India, healthcare India, affordable medical treatment, international patients, medical travel, hospital India';
 @endphp
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#9fd7e4] via-white to-[#e0f4f8]">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-[#9fd7e4] rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-            <div class="absolute top-40 right-10 w-72 h-72 bg-[#b8e3ed] rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-            <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#9fd7e4] rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+    <!-- Hero Section - Medical Tourism Visual -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1920&q=80" 
+                 alt="Medical Tourism in India" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0a4d78]/90 to-[#0a4d78]/70"></div>
         </div>
 
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
-            <div class="max-w-5xl mx-auto text-center">
+            <div class="max-w-5xl mx-auto text-center text-white">
                 <div class="fade-in">
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                        Fight From <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0a4d78] to-[#9fd7e4]">Diseases</span>
+                    <div class="inline-block px-4 py-2 bg-[#9fd7e4]/20 backdrop-blur-sm rounded-full mb-6 border border-[#9fd7e4]/30">
+                        <span class="text-[#9fd7e4] font-semibold">Serving patients from 20+ countries</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        World-Class Medical Care in <span class="text-[#9fd7e4]">India</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-                        Empowering communities through health awareness and disease prevention. Together, we can build a healthier future for everyone.
+                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-gray-100">
+                        Connect with trusted hospitals, renowned doctors, and affordable world-class treatments. 
+                        Experience a seamless and compassionate medical journey.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a href="{{ route('contact') }}" class="px-8 py-4 bg-[#0a4d78] text-white rounded-lg font-semibold text-lg hover:bg-[#0a5a8a] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                            Get Started Today
-                        </a>
-                        <a href="{{ route('about') }}" class="px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold text-lg border-2 border-gray-300 hover:border-[#0a4d78] hover:text-[#0a4d78] transition-all duration-300 shadow-lg hover:shadow-xl">
-                            Learn More
+                        <button data-open-modal class="px-8 py-4 bg-[#0a4d78] text-white rounded-lg font-semibold text-lg hover:bg-[#0a5a8a] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                            Contact Us
+                        </button>
+                        <a href="#specialities" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold text-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            View Specialities
                         </a>
                     </div>
                 </div>
@@ -39,61 +44,107 @@
 
         <!-- Scroll Indicator -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
             </svg>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Partner Hospitals Section -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16 slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Partner Hospitals</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    We provide comprehensive health resources and awareness to help you stay healthy and prevent diseases.
+                    Trusted multi-speciality and super-speciality hospitals across India
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-gradient-to-br from-[#e0f4f8] to-[#9fd7e4] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up">
-                    <div class="w-16 h-16 bg-[#0a4d78] rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Expert Health Tips</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Access evidence-based health tips and strategies from medical professionals to maintain optimal wellness.
-                    </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                @for($i = 1; $i <= 8; $i++)
+                <div class="bg-gradient-to-br from-[#e0f4f8] to-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 slide-up flex items-center justify-center h-32">
+                    <img src="https://via.placeholder.com/200x100/0a4d78/ffffff?text=Hospital+{{ $i }}" 
+                         alt="Partner Hospital {{ $i }}" 
+                         class="max-w-full max-h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300">
                 </div>
+                @endfor
+            </div>
+        </div>
+    </section>
 
-                <!-- Feature 2 -->
-                <div class="bg-gradient-to-br from-[#d1f0f8] to-[#b8e3ed] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up">
-                    <div class="w-16 h-16 bg-[#0a4d78] rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Health Education</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Comprehensive educational resources to help you understand diseases and how to prevent them effectively.
-                    </p>
-                </div>
+    <!-- Specialities Section -->
+    <section id="specialities" class="py-20 bg-gradient-to-br from-[#9fd7e4]/10 to-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16 slide-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Medical Specialities</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Comprehensive healthcare services across multiple specialities
+                </p>
+            </div>
 
-                <!-- Feature 3 -->
-                <div class="bg-gradient-to-br from-[#c8ecf5] to-[#9fd7e4] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up">
-                    <div class="w-16 h-16 bg-[#0a4d78] rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Community Support</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                @php
+                    $specialities = [
+                        ['name' => 'Orthopaedics & Joint Replacement', 'icon' => '🦴'],
+                        ['name' => 'Cardiology & Cardiac Surgery', 'icon' => '❤️'],
+                        ['name' => 'Oncology (Cancer Care)', 'icon' => '🎗️'],
+                        ['name' => 'Neurology & Spine Surgery', 'icon' => '🧠'],
+                        ['name' => 'Organ Transplants', 'icon' => '🫀'],
+                        ['name' => 'Urology & Laparoscopic Surgery', 'icon' => '🔬'],
+                        ['name' => 'Robotic & Minimally Invasive Procedures', 'icon' => '🤖'],
+                    ];
+                @endphp
+
+                @foreach($specialities as $speciality)
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up border-l-4 border-[#0a4d78]">
+                    <div class="text-5xl mb-4">{{ $speciality['icon'] }}</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $speciality['name'] }}</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Join a supportive community dedicated to promoting health awareness and disease prevention.
+                        World-class treatment with advanced technology and experienced medical professionals.
                     </p>
                 </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16 slide-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Photo Gallery</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Explore our world-class facilities and patient care environments
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+                @php
+                    $galleryImages = [
+                        ['url' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80', 'title' => 'Hospital Infrastructure'],
+                        ['url' => 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80', 'title' => 'Medical Professionals'],
+                        ['url' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80', 'title' => 'International Patients'],
+                        ['url' => 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80', 'title' => 'Treatment Environment'],
+                        ['url' => 'https://images.unsplash.com/photo-1512678080530-9690e14a5b25?w=800&q=80', 'title' => 'Recovery Care'],
+                        ['url' => 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80', 'title' => 'Modern Equipment'],
+                        ['url' => 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80', 'title' => 'Patient Care'],
+                        ['url' => 'https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80', 'title' => 'Medical Team'],
+                    ];
+                @endphp
+
+                @foreach($galleryImages as $image)
+                <a href="{{ $image['url'] }}" 
+                   data-lightbox="gallery" 
+                   data-title="{{ $image['title'] }}"
+                   class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up">
+                    <img src="{{ $image['url'] }}" 
+                         alt="{{ $image['title'] }}" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a4d78]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <p class="text-white p-4 font-semibold">{{ $image['title'] }}</p>
+                    </div>
+                </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -103,16 +154,16 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="fade-in">
-                    <div class="text-5xl md:text-6xl font-bold mb-2">10K+</div>
-                    <div class="text-xl text-[#9fd7e4]">Active Members</div>
+                    <div class="text-5xl md:text-6xl font-bold mb-2">20+</div>
+                    <div class="text-xl text-[#9fd7e4]">Countries Served</div>
                 </div>
                 <div class="fade-in">
-                    <div class="text-5xl md:text-6xl font-bold mb-2">500+</div>
-                    <div class="text-xl text-[#9fd7e4]">Health Resources</div>
+                    <div class="text-5xl md:text-6xl font-bold mb-2">1000+</div>
+                    <div class="text-xl text-[#9fd7e4]">Patients Treated</div>
                 </div>
                 <div class="fade-in">
                     <div class="text-5xl md:text-6xl font-bold mb-2">50+</div>
-                    <div class="text-xl text-[#9fd7e4]">Expert Articles</div>
+                    <div class="text-xl text-[#9fd7e4]">Partner Hospitals</div>
                 </div>
                 <div class="fade-in">
                     <div class="text-5xl md:text-6xl font-bold mb-2">24/7</div>
@@ -126,15 +177,14 @@
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="max-w-4xl mx-auto text-center bg-gradient-to-r from-[#0a4d78] to-[#0a5a8a] rounded-3xl p-12 md:p-16 shadow-2xl slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Start Your Health Journey?</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Start Your Medical Journey?</h2>
                 <p class="text-xl text-[#9fd7e4] mb-8 max-w-2xl mx-auto">
-                    Join thousands of people who are taking proactive steps towards better health and disease prevention.
+                    Get in touch with us today and let us help you find the best medical treatment in India.
                 </p>
-                <a href="{{ route('contact') }}" class="inline-block px-10 py-4 bg-white text-[#0a4d78] rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                    Get Started Now
-                </a>
+                <button data-open-modal class="inline-block px-10 py-4 bg-white text-[#0a4d78] rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                    Contact Us Now
+                </button>
             </div>
         </div>
     </section>
 @endsection
-

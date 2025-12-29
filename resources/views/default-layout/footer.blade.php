@@ -7,8 +7,11 @@
                     <img src="{{ asset('assets/images/logo.png') }}" alt="Fight From Diseases Logo" class="h-8 w-auto">
                     <span class="text-xl font-bold text-white">Fight From Diseases</span>
                 </div>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Empowering communities through health awareness and disease prevention. Together, we can build a healthier future.
+                <p class="text-gray-400 text-sm leading-relaxed mb-3">
+                    Connecting international patients with trusted hospitals and renowned doctors in India for affordable world-class medical treatments.
+                </p>
+                <p class="text-[#9fd7e4] font-semibold text-sm">
+                    Serving patients from 20+ countries
                 </p>
                 <div class="flex space-x-4">
                     <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
@@ -78,7 +81,8 @@
                         </svg>
                         <span class="leading-relaxed">
                             Pitampura, New Delhi<br>
-                            India
+                            India<br>
+                            Serving patients from 20+ countries
                         </span>
                     </li>
                 </ul>
