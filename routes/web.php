@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HospitalController;
 use App\Http\Controllers\Admin\SpecialityController;
+use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\ServiceCountController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -39,5 +41,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // Specialities CRUD
         Route::resource('specialities', SpecialityController::class);
+        
+        // Photo Gallery CRUD
+        Route::resource('photo-gallery', PhotoGalleryController::class);
+        
+        // Service Counts CRUD
+        Route::resource('service-counts', ServiceCountController::class);
     });
 });

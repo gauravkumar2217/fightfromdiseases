@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Hospital;
 use App\Models\Speciality;
+use App\Models\PhotoGallery;
+use App\Models\ServiceCount;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,7 +22,17 @@ class HomeController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('home', compact('hospitals', 'specialities'));
+        $galleryPhotos = PhotoGallery::where('is_active', true)
+            ->orderBy('display_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $serviceCounts = ServiceCount::where('is_active', true)
+            ->orderBy('display_order')
+            ->orderBy('label')
+            ->get();
+
+        return view('home', compact('hospitals', 'specialities', 'galleryPhotos', 'serviceCounts'));
     }
 }
 

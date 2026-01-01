@@ -187,32 +187,23 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
-                @php
-                    $galleryImages = [
-                        ['url' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80', 'title' => 'Hospital Infrastructure'],
-                        ['url' => 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80', 'title' => 'Medical Professionals'],
-                        ['url' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80', 'title' => 'International Patients'],
-                        ['url' => 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80', 'title' => 'Treatment Environment'],
-                        ['url' => 'https://images.unsplash.com/photo-1512678080530-9690e14a5b25?w=800&q=80', 'title' => 'Recovery Care'],
-                        ['url' => 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80', 'title' => 'Modern Equipment'],
-                        ['url' => 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80', 'title' => 'Patient Care'],
-                        ['url' => 'https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80', 'title' => 'Medical Team'],
-                    ];
-                @endphp
-
-                @foreach($galleryImages as $image)
-                <a href="{{ $image['url'] }}" 
+                @forelse($galleryPhotos as $photo)
+                <a href="{{ $photo->image_url }}" 
                    data-lightbox="gallery" 
-                   data-title="{{ $image['title'] }}"
+                   data-title="{{ $photo->title }}"
                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up">
-                    <img src="{{ $image['url'] }}" 
-                         alt="{{ $image['title'] }}" 
+                    <img src="{{ $photo->image_url }}" 
+                         alt="{{ $photo->title }}" 
                          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#0a4d78]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <p class="text-white p-4 font-semibold">{{ $image['title'] }}</p>
+                        <p class="text-white p-4 font-semibold">{{ $photo->title }}</p>
                     </div>
                 </a>
-                @endforeach
+                @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">No photos available in gallery at the moment.</p>
+                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -221,22 +212,19 @@
     <section class="py-20 bg-gradient-to-r from-[#0a4d78] to-[#0a5a8a] text-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                @forelse($serviceCounts as $serviceCount)
                 <div class="fade-in">
-                    <div class="text-5xl md:text-6xl font-bold mb-2">20+</div>
-                    <div class="text-xl text-[#9fd7e4]">Countries Served</div>
+                    @if($serviceCount->icon)
+                        <div class="text-4xl mb-2">{{ $serviceCount->icon }}</div>
+                    @endif
+                    <div class="text-5xl md:text-6xl font-bold mb-2">{{ $serviceCount->value }}</div>
+                    <div class="text-xl text-[#9fd7e4]">{{ $serviceCount->label }}</div>
                 </div>
-                <div class="fade-in">
-                    <div class="text-5xl md:text-6xl font-bold mb-2">1000+</div>
-                    <div class="text-xl text-[#9fd7e4]">Patients Treated</div>
+                @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-white/80">No service statistics available at the moment.</p>
                 </div>
-                <div class="fade-in">
-                    <div class="text-5xl md:text-6xl font-bold mb-2">50+</div>
-                    <div class="text-xl text-[#9fd7e4]">Partner Hospitals</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-5xl md:text-6xl font-bold mb-2">24/7</div>
-                    <div class="text-xl text-[#9fd7e4]">Support Available</div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>

@@ -1,0 +1,115 @@
+@extends('admin.layout')
+
+@section('title', 'Edit Photo')
+@section('page-title', 'Edit Photo')
+
+@section('content')
+    <div class="bg-white rounded-xl shadow-lg p-6">
+        <form action="{{ route('admin.photo-gallery.update', $photoGallery) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            @csrf
+            @method('PUT')
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Title -->
+                <div>
+                    <label for="title" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Photo Title <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" 
+                           id="title" 
+                           name="title" 
+                           value="{{ old('title', $photoGallery->title) }}"
+                           required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">
+                    @error('title')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Display Order -->
+                <div>
+                    <label for="display_order" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Display Order
+                    </label>
+                    <input type="number" 
+                           id="display_order" 
+                           name="display_order" 
+                           value="{{ old('display_order', $photoGallery->display_order) }}"
+                           min="0"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">
+                    @error('display_order')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Current Image -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Current Photo
+                </label>
+                <div class="mb-3">
+                    <img src="{{ $photoGallery->image_url }}" 
+                         alt="{{ $photoGallery->title }}" 
+                         class="h-48 w-auto object-cover border border-gray-200 rounded-lg p-2">
+                </div>
+            </div>
+
+            <!-- New Image -->
+            <div>
+                <label for="image" class="block text-sm font-semibold text-gray-700 mb-2">
+                    Replace Photo (Optional)
+                </label>
+                <input type="file" 
+                       id="image" 
+                       name="image" 
+                       accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">
+                <p class="mt-1 text-xs text-gray-500">Accepted formats: JPEG, JPG, PNG, WEBP, GIF. Images will be automatically compressed and optimized. Leave empty to keep current photo.</p>
+                @error('image')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">
+                    Description
+                </label>
+                <textarea id="description" 
+                          name="description" 
+                          rows="4"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">{{ old('description', $photoGallery->description) }}</textarea>
+                @error('description')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Is Active -->
+            <div class="flex items-center">
+                <input type="checkbox" 
+                       id="is_active" 
+                       name="is_active" 
+                       value="1"
+                       {{ old('is_active', $photoGallery->is_active) ? 'checked' : '' }}
+                       class="w-4 h-4 text-[#0a4d78] border-gray-300 rounded focus:ring-[#0a4d78]">
+                <label for="is_active" class="ml-2 text-sm font-semibold text-gray-700">
+                    Active (Show on website)
+                </label>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+                <a href="{{ route('admin.photo-gallery.index') }}" 
+                   class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                    Cancel
+                </a>
+                <button type="submit" 
+                        class="px-6 py-3 bg-[#0a4d78] text-white rounded-lg font-semibold hover:bg-[#0a5a8a] transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Update Photo
+                </button>
+            </div>
+        </form>
+    </div>
+@endsection
+
