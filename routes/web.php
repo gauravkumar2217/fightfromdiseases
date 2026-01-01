@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\HospitalController;
 use App\Http\Controllers\Admin\SpecialityController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\ServiceCountController;
+use App\Http\Controllers\Admin\FAQController as AdminFAQController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -59,5 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // Service Counts CRUD
         Route::resource('service-counts', ServiceCountController::class);
+        
+        // FAQs CRUD
+        Route::resource('faqs', AdminFAQController::class);
     });
 });
