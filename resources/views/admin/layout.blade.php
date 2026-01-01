@@ -85,6 +85,13 @@
                     </svg>
                     <span>FAQs</span>
                 </a>
+                <a href="{{ route('admin.content.index') }}" 
+                   class="flex items-center space-x-3 px-4 py-3 rounded-lg {{ request()->routeIs('admin.content*') ? 'bg-[#0a5a8a]' : 'hover:bg-[#0a5a8a]' }} transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                    <span>Content</span>
+                </a>
                 <a href="{{ route('admin.settings') }}" 
                    class="flex items-center space-x-3 px-4 py-3 rounded-lg {{ request()->routeIs('admin.settings*') ? 'bg-[#0a5a8a]' : 'hover:bg-[#0a5a8a]' }} transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
