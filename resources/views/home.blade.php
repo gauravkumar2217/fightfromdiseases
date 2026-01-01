@@ -66,9 +66,9 @@
     <section id="about" class="py-20 bg-gradient-to-br from-white to-[#9fd7e4]/10">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16 slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Us</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ $getContent('home', 'about_section_title', 'About Us') }}</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Connecting international patients with world-class healthcare in India
+                    {{ $getContent('home', 'about_section_subtitle', 'Connecting international patients with world-class healthcare in India') }}
                 </p>
             </div>
 
@@ -81,10 +81,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-gray-900">Our Mission</h3>
+                        <h3 class="text-3xl font-bold text-gray-900">{{ $getContent('home', 'mission_title', 'Our Mission') }}</h3>
                     </div>
                     <p class="text-lg text-gray-700 leading-relaxed">
-                        To connect international patients with trusted hospitals, renowned doctors, and affordable world-class treatments in India, ensuring a seamless and compassionate medical journey.
+                        {{ $getContent('home', 'mission_text', 'To connect international patients with trusted hospitals, renowned doctors, and affordable world-class treatments in India, ensuring a seamless and compassionate medical journey.') }}
                     </p>
                 </div>
 
@@ -97,10 +97,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-gray-900">Our Vision</h3>
+                        <h3 class="text-3xl font-bold text-gray-900">{{ $getContent('home', 'vision_title', 'Our Vision') }}</h3>
                     </div>
                     <p class="text-lg text-gray-700 leading-relaxed">
-                        To become a globally recognized medical tourism facilitator known for ethical practices, patient-centric care, and long-term international healthcare partnerships.
+                        {{ $getContent('home', 'vision_text', 'To become a globally recognized medical tourism facilitator known for ethical practices, patient-centric care, and long-term international healthcare partnerships.') }}
                     </p>
                 </div>
             </div>
@@ -109,7 +109,7 @@
             <div class="mt-12 max-w-4xl mx-auto text-center slide-up">
                 <div class="bg-gradient-to-r from-[#0a4d78]/10 to-[#9fd7e4]/10 rounded-2xl p-8 border border-[#0a4d78]/20">
                     <p class="text-lg text-gray-700 leading-relaxed">
-                        At <strong class="text-[#0a4d78]">Fight From Diseases</strong>, we are committed to making world-class healthcare accessible to patients from around the globe. Our dedicated team works tirelessly to ensure every patient receives personalized care, transparent communication, and the best possible medical outcomes.
+                        {!! $getContent('home', 'about_additional_text', 'At <strong class="text-[#0a4d78]">Fight From Diseases</strong>, we are committed to making world-class healthcare accessible to patients from around the globe. Our dedicated team works tirelessly to ensure every patient receives personalized care, transparent communication, and the best possible medical outcomes.') !!}
                     </p>
                 </div>
             </div>
@@ -120,9 +120,9 @@
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16 slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Partner Hospitals</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ $getContent('home', 'hospitals_section_title', 'Our Partner Hospitals') }}</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Trusted multi-speciality and super-speciality hospitals across India
+                    {{ $getContent('home', 'hospitals_section_subtitle', 'Trusted multi-speciality and super-speciality hospitals across India') }}
                 </p>
             </div>
 
@@ -152,9 +152,9 @@
     <section id="specialities" class="py-20 bg-gradient-to-br from-[#9fd7e4]/10 to-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16 slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Medical Specialities</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ $getContent('home', 'specialities_section_title', 'Medical Specialities') }}</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Comprehensive healthcare services across multiple specialities
+                    {{ $getContent('home', 'specialities_section_subtitle', 'Comprehensive healthcare services across multiple specialities') }}
                 </p>
             </div>
 
@@ -180,9 +180,9 @@
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16 slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Photo Gallery</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ $getContent('home', 'gallery_section_title', 'Photo Gallery') }}</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Explore our world-class facilities and patient care environments
+                    {{ $getContent('home', 'gallery_section_subtitle', 'Explore our world-class facilities and patient care environments') }}
                 </p>
             </div>
 
@@ -233,12 +233,12 @@
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="max-w-4xl mx-auto text-center bg-gradient-to-r from-[#0a4d78] to-[#0a5a8a] rounded-3xl p-12 md:p-16 shadow-2xl slide-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Start Your Medical Journey?</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">{{ $getContent('home', 'cta_section_title', 'Ready to Start Your Medical Journey?') }}</h2>
                 <p class="text-xl text-[#9fd7e4] mb-8 max-w-2xl mx-auto">
-                    Get in touch with us today and let us help you find the best medical treatment in India.
+                    {{ $getContent('home', 'cta_section_description', 'Get in touch with us today and let us help you find the best medical treatment in India.') }}
                 </p>
                 <button data-open-modal class="inline-block px-10 py-4 bg-white text-[#0a4d78] rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                    Contact Us Now
+                    {{ $getContent('home', 'cta_button_text', 'Contact Us Now') }}
                 </button>
             </div>
         </div>

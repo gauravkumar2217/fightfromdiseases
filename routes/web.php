@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\SpecialityController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\ServiceCountController;
 use App\Http\Controllers\Admin\FAQController as AdminFAQController;
+use App\Http\Controllers\Admin\ContentController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -63,5 +64,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // FAQs CRUD
         Route::resource('faqs', AdminFAQController::class);
+        
+        // Content Management
+        Route::get('/content', [ContentController::class, 'index'])->name('content.index');
+        Route::get('/content/{pageSlug}', [ContentController::class, 'show'])->name('content.show');
+        Route::put('/content/{pageSlug}', [ContentController::class, 'update'])->name('content.update');
     });
 });

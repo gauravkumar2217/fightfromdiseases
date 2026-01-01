@@ -26,5 +26,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FAQSeeder::class,
         ]);
+
+        // Seed Content
+        $this->call([
+            ContentSeeder::class,
+        ]);
     }
 }
