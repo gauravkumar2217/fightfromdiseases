@@ -127,13 +127,23 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                @for($i = 1; $i <= 8; $i++)
+                @forelse($hospitals as $hospital)
                 <div class="bg-gradient-to-br from-[#e0f4f8] to-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 slide-up flex items-center justify-center h-32">
-                    <img src="https://via.placeholder.com/200x100/0a4d78/ffffff?text=Hospital+{{ $i }}" 
-                         alt="Partner Hospital {{ $i }}" 
-                         class="max-w-full max-h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                    @if($hospital->logo)
+                        <img src="{{ $hospital->logo }}" 
+                             alt="{{ $hospital->name }}" 
+                             class="max-w-full max-h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                    @else
+                        <div class="text-center">
+                            <p class="text-sm font-semibold text-gray-700">{{ $hospital->name }}</p>
+                        </div>
+                    @endif
                 </div>
-                @endfor
+                @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">No hospitals available at the moment.</p>
+                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -149,27 +159,19 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                @php
-                    $specialities = [
-                        ['name' => 'Orthopaedics & Joint Replacement', 'icon' => '🦴'],
-                        ['name' => 'Cardiology & Cardiac Surgery', 'icon' => '❤️'],
-                        ['name' => 'Oncology (Cancer Care)', 'icon' => '🎗️'],
-                        ['name' => 'Neurology & Spine Surgery', 'icon' => '🧠'],
-                        ['name' => 'Organ Transplants', 'icon' => '🫀'],
-                        ['name' => 'Urology & Laparoscopic Surgery', 'icon' => '🔬'],
-                        ['name' => 'Robotic & Minimally Invasive Procedures', 'icon' => '🤖'],
-                    ];
-                @endphp
-
-                @foreach($specialities as $speciality)
+                @forelse($specialities as $speciality)
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up border-l-4 border-[#0a4d78]">
-                    <div class="text-5xl mb-4">{{ $speciality['icon'] }}</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $speciality['name'] }}</h3>
+                    <div class="text-5xl mb-4">{{ $speciality->icon ?? '🏥' }}</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $speciality->name }}</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        World-class treatment with advanced technology and experienced medical professionals.
+                        {{ $speciality->description ?? 'World-class treatment with advanced technology and experienced medical professionals.' }}
                     </p>
                 </div>
-                @endforeach
+                @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">No specialities available at the moment.</p>
+                </div>
+                @endforelse
             </div>
         </div>
     </section>

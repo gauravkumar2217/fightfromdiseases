@@ -6,6 +6,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\HospitalController;
+use App\Http\Controllers\Admin\SpecialityController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,5 +33,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/settings/{key}', [\App\Http\Controllers\Admin\SettingsController::class, 'updateSingle'])->name('settings.update-single');
         Route::get('/banner', [\App\Http\Controllers\Admin\BannerController::class, 'index'])->name('banner');
         Route::post('/banner', [\App\Http\Controllers\Admin\BannerController::class, 'update'])->name('banner.update');
+        
+        // Hospitals CRUD
+        Route::resource('hospitals', HospitalController::class);
+        
+        // Specialities CRUD
+        Route::resource('specialities', SpecialityController::class);
     });
 });
