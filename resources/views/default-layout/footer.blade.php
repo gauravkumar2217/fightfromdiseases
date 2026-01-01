@@ -39,7 +39,7 @@
                     <li><a href="{{ route('home') }}" class="hover:text-white transition-colors duration-300">Home</a></li>
                     <li><a href="{{ route('about') }}" class="hover:text-white transition-colors duration-300">About Us</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors duration-300">Contact</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">Health Resources</a></li>
+                    <li><a href="{{ route('health-resources') }}" class="hover:text-white transition-colors duration-300">Health Resources</a></li>
                 </ul>
             </div>
 
@@ -47,10 +47,10 @@
             <div>
                 <h3 class="text-white font-semibold mb-4">Resources</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">Health Tips</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">Disease Prevention</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">Wellness Guide</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">FAQ</a></li>
+                    <li><a href="{{ route('health-tips') }}" class="hover:text-white transition-colors duration-300">Health Tips</a></li>
+                    <li><a href="{{ route('disease-prevention') }}" class="hover:text-white transition-colors duration-300">Disease Prevention</a></li>
+                    <li><a href="{{ route('wellness-guide') }}" class="hover:text-white transition-colors duration-300">Wellness Guide</a></li>
+                    <li><a href="{{ route('faq') }}" class="hover:text-white transition-colors duration-300">FAQ</a></li>
                 </ul>
             </div>
 
@@ -91,6 +91,9 @@
 
         <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
             <p>&copy; {{ date('Y') }} Fight From Diseases. All rights reserved.</p>
+            <p class="mt-2">
+                Developed by <a href="https://www.geniuswebsolution.com/" target="_blank" rel="noopener noreferrer" class="text-[#9fd7e4] hover:text-white transition-colors duration-300">GeniusWebSolution</a>
+            </p>
         </div>
     </div>
 </footer>

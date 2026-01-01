@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HealthResourcesController;
+use App\Http\Controllers\HealthTipsController;
+use App\Http\Controllers\DiseasePreventionController;
+use App\Http\Controllers\WellnessGuideController;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HospitalController;
@@ -17,6 +22,13 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 Route::post('/contacttable2/submit', [ContactController::class, 'contacttable2Submit'])->name('contacttable2.submit');
+
+// Resource Pages
+Route::get('/health-resources', [HealthResourcesController::class, 'index'])->name('health-resources');
+Route::get('/health-tips', [HealthTipsController::class, 'index'])->name('health-tips');
+Route::get('/disease-prevention', [DiseasePreventionController::class, 'index'])->name('disease-prevention');
+Route::get('/wellness-guide', [WellnessGuideController::class, 'index'])->name('wellness-guide');
+Route::get('/faq', [FAQController::class, 'index'])->name('faq');
 
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {
