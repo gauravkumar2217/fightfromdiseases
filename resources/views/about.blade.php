@@ -31,11 +31,8 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="slide-left">
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Mission</h2>
-                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-                            At Fight From Diseases, our mission is to create a healthier world by providing accessible health education, promoting disease prevention strategies, and building supportive communities that prioritize wellness.
-                        </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            We believe that knowledge is the first line of defense against diseases. Through our comprehensive resources and community-driven approach, we aim to empower individuals to take control of their health and make informed decisions.
+                            To connect international patients with trusted hospitals, renowned doctors, and affordable world-class treatments in India, ensuring a seamless and compassionate medical journey.
                         </p>
                     </div>
                     <div class="slide-right">
@@ -60,11 +57,8 @@
                     </div>
                     <div class="slide-left order-1 md:order-2">
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Vision</h2>
-                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-                            We envision a world where every individual has access to reliable health information and the tools needed to prevent diseases before they occur.
-                        </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Our goal is to bridge the gap between medical knowledge and everyday health practices, making preventive healthcare accessible to everyone, regardless of their background or location.
+                            To become a globally recognized medical tourism facilitator known for ethical practices, patient-centric care, and long-term international healthcare partnerships.
                         </p>
                     </div>
                 </div>

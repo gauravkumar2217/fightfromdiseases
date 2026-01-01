@@ -157,3 +157,45 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #0a4d78;
 }
+
+/* Modal Styles */
+#contactModal {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#contactModal.opacity-100 {
+    opacity: 1;
+}
+
+.modal-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#contactModal.opacity-100 .modal-backdrop {
+    opacity: 1;
+}
+
+.modal-content {
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-content.scale-100 {
+    transform: scale(1);
+}
+
+/* WhatsApp Icon Animation */
+@keyframes pulse-whatsapp {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.fixed.bottom-6.right-6:hover {
+    animation: pulse-whatsapp 1s ease-in-out infinite;
+}
