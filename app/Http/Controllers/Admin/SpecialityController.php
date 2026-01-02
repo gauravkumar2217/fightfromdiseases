@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SpecialityController extends Controller
 {
@@ -32,11 +34,25 @@ class SpecialityController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'icon' => 'nullable|string|max:10',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
             'description' => 'nullable|string',
             'is_active' => 'boolean',
             'display_order' => 'nullable|integer|min:0',
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = 'speciality-' . time() . '-' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $directory = 'uploads/specialities';
+            
+            if (!Storage::disk('public')->exists($directory)) {
+                Storage::disk('public')->makeDirectory($directory, 0755, true);
+            }
+            
+            $path = $file->storeAs($directory, $filename, 'public');
+            $validated['image'] = asset('storage/' . $path);
+        }
 
         $validated['is_active'] = $request->has('is_active');
         $validated['display_order'] = $validated['display_order'] ?? 0;
@@ -70,11 +86,34 @@ class SpecialityController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'icon' => 'nullable|string|max:10',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
             'description' => 'nullable|string',
             'is_active' => 'boolean',
             'display_order' => 'nullable|integer|min:0',
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($speciality->image && strpos($speciality->image, 'storage/') !== false) {
+                $oldPath = str_replace(asset('storage/'), '', $speciality->image);
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            $file = $request->file('image');
+            $filename = 'speciality-' . time() . '-' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $directory = 'uploads/specialities';
+            
+            if (!Storage::disk('public')->exists($directory)) {
+                Storage::disk('public')->makeDirectory($directory, 0755, true);
+            }
+            
+            $path = $file->storeAs($directory, $filename, 'public');
+            $validated['image'] = asset('storage/' . $path);
+        } else {
+            // Keep existing image if not uploading new one
+            $validated['image'] = $speciality->image;
+        }
 
         $validated['is_active'] = $request->has('is_active');
         $validated['display_order'] = $validated['display_order'] ?? 0;
@@ -90,6 +129,12 @@ class SpecialityController extends Controller
      */
     public function destroy(Speciality $speciality)
     {
+        // Delete image if exists
+        if ($speciality->image && strpos($speciality->image, 'storage/') !== false) {
+            $oldPath = str_replace(asset('storage/'), '', $speciality->image);
+            Storage::disk('public')->delete($oldPath);
+        }
+
         $speciality->delete();
 
         return redirect()->route('admin.specialities.index')

@@ -12,6 +12,7 @@ class Speciality extends Model
     protected $fillable = [
         'name',
         'icon',
+        'image',
         'description',
         'is_active',
         'display_order',
