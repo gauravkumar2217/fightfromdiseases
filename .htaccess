@@ -1,6 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
+    # Force HTTPS and WWW - Redirect to https://www.domain.com
+    # Check if HTTPS is off OR www is missing
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # Extract domain (remove www if present, then add www)
+    RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+    RewriteRule ^(.*)$ https://www.%1%{REQUEST_URI} [L,R=301]
+    
     # Redirect all requests to the public directory
     # This ensures Laravel's public folder is the entry point
     RewriteCond %{REQUEST_URI} !^/public/
@@ -15,4 +23,38 @@
 
 # Prevent directory listing
 Options -Indexes
+
+# Security Headers (additional protection at server level)
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Remove server information
+    Header unset X-Powered-By
+    Header unset Server
+</IfModule>
+
+# Block SQL injection and XSS attempts in query strings
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*object.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*embed.*(\>|%3E) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# Block access to additional sensitive file types
+<FilesMatch "\.(env|log|ini|conf|bak|backup|old|sql|sh|bat|cmd)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 

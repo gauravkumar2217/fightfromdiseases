@@ -6,6 +6,7 @@ use App\Mail\ContactFormMail;
 use App\Mail\ContactTable2Mail;
 use App\Models\Contact;
 use App\Models\ContactTable2;
+use App\Helpers\SecurityHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -33,13 +34,13 @@ class ContactController extends Controller
         }
 
         try {
-            // Store contact information in database
+            // Sanitize inputs to prevent XSS and SQL injection
             $contact = Contact::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'subject' => $request->subject,
-                'message' => $request->message,
+                'name' => SecurityHelper::sanitizeInput($request->name),
+                'email' => SecurityHelper::sanitizeEmail($request->email) ?: $request->email,
+                'phone' => $request->phone ? SecurityHelper::sanitizeInput($request->phone) : null,
+                'subject' => SecurityHelper::sanitizeInput($request->subject),
+                'message' => SecurityHelper::sanitizeInput($request->message),
             ]);
 
             // Send email to client
@@ -76,15 +77,15 @@ class ContactController extends Controller
         }
 
         try {
-            // Store contact information in database
+            // Sanitize inputs to prevent XSS and SQL injection
             $contact = ContactTable2::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'country' => $request->country,
-                'treatment_interest' => $request->treatment_interest,
-                'subject' => $request->subject,
-                'message' => $request->message,
+                'name' => $request->name ? SecurityHelper::sanitizeInput($request->name) : null,
+                'email' => SecurityHelper::sanitizeEmail($request->email) ?: $request->email,
+                'phone' => $request->phone ? SecurityHelper::sanitizeInput($request->phone) : null,
+                'country' => $request->country ? SecurityHelper::sanitizeInput($request->country) : null,
+                'treatment_interest' => $request->treatment_interest ? SecurityHelper::sanitizeInput($request->treatment_interest) : null,
+                'subject' => SecurityHelper::sanitizeInput($request->subject),
+                'message' => SecurityHelper::sanitizeInput($request->message),
             ]);
 
             // Send email to client
