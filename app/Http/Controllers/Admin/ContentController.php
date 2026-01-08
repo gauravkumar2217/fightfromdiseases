@@ -20,6 +20,8 @@ class ContentController extends Controller
         'disease-prevention' => 'Disease Prevention',
         'wellness-guide' => 'Wellness Guide',
         'faq' => 'FAQ',
+        'privacy-policy' => 'Privacy Policy',
+        'terms-condition' => 'Terms & Conditions',
     ];
 
     /**

@@ -9,6 +9,8 @@ use App\Http\Controllers\HealthTipsController;
 use App\Http\Controllers\DiseasePreventionController;
 use App\Http\Controllers\WellnessGuideController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\TermsConditionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HospitalController;
@@ -31,6 +33,8 @@ Route::get('/health-tips', [HealthTipsController::class, 'index'])->name('health
 Route::get('/disease-prevention', [DiseasePreventionController::class, 'index'])->name('disease-prevention');
 Route::get('/wellness-guide', [WellnessGuideController::class, 'index'])->name('wellness-guide');
 Route::get('/faq', [FAQController::class, 'index'])->name('faq');
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
+Route::get('/terms-condition', [TermsConditionController::class, 'index'])->name('terms-condition');
 
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {

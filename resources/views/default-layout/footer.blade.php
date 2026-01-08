@@ -89,11 +89,20 @@
             </div>
         </div>
 
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {{ date('Y') }} Fight From Diseases. All rights reserved.</p>
-            <p class="mt-2">
-                Developed by <a href="https://www.geniuswebsolution.com/" target="_blank" rel="noopener noreferrer" class="text-[#9fd7e4] hover:text-white transition-colors duration-300">GeniusWebSolution</a>
-            </p>
+        <div class="border-t border-gray-800 mt-8 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 space-y-4 md:space-y-0">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="{{ route('terms-condition') }}" class="hover:text-white transition-colors duration-300">Terms & Conditions</a>
+                </div>
+                <div class="text-center">
+                    <p>&copy; {{ date('Y') }} Fight From Diseases. All rights reserved.</p>
+                    <p class="mt-2">
+                        Developed by <a href="https://www.geniuswebsolution.com/" target="_blank" rel="noopener noreferrer" class="text-[#9fd7e4] hover:text-white transition-colors duration-300">GeniusWebSolution</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

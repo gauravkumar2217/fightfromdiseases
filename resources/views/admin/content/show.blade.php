@@ -21,7 +21,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.content.update', $pageSlug) }}" method="POST" class="space-y-8">
+    <form action="{{ route('admin.content.update', $pageSlug) }}" method="POST" class="space-y-8" id="contentForm">
         @csrf
         @method('PUT')
 
@@ -33,8 +33,8 @@
             
             <div class="p-6 space-y-6">
                 @foreach($groupContents as $content)
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="md:col-span-1">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <div class="md:col-span-4">
                         <label for="content_{{ $content->key }}" class="block text-sm font-semibold text-gray-700 mb-2">
                             {{ ucwords(str_replace('_', ' ', $content->key)) }}
                         </label>
@@ -43,8 +43,15 @@
                         @endif
                         <p class="text-xs text-gray-400 mt-1">Order: {{ $content->display_order }}</p>
                     </div>
-                    <div class="md:col-span-2">
-                        @if($content->type === 'textarea' || $content->type === 'html')
+                    <div class="md:col-span-8">
+                        @if($content->type === 'html')
+                            <textarea 
+                                id="content_{{ $content->key }}" 
+                                name="content_{{ $content->key }}" 
+                                rows="8"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300 tinymce-editor"
+                            >{{ old('content_' . $content->key, $content->value) }}</textarea>
+                        @elseif($content->type === 'textarea')
                             <textarea 
                                 id="content_{{ $content->key }}" 
                                 name="content_{{ $content->key }}" 
@@ -88,5 +95,106 @@
         </div>
         @endif
     </form>
+
+    <!-- jQuery (Required for Summernote) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Summernote WYSIWYG Editor - Completely Free, No API Key Required -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Summernote for all HTML content fields
+            const htmlTextareas = document.querySelectorAll('.tinymce-editor');
+            
+            htmlTextareas.forEach(function(textarea) {
+                $(textarea).summernote({
+                    height: 500,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Inter', 'Times New Roman', 'Verdana'],
+                    fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '24', '36', '48'],
+                    placeholder: 'Start typing...',
+                    dialogsInBody: true,
+                    codeviewFilter: false,
+                    codeviewIframeFilter: true,
+                    // Allow all HTML
+                    codeviewFilterRegex: /<\/*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|ilayer|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|t(?:itle|extarea)|xml)[^>]*?>/gi,
+                    // Callbacks
+                    onInit: function() {
+                        // Ensure content is saved
+                        $(textarea).on('summernote.change', function() {
+                            $(textarea).summernote('code');
+                        });
+                    }
+                });
+            });
+            
+            // Ensure all Summernote instances update their textareas before form submission
+            const form = document.getElementById('contentForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    // Save all Summernote editors before form submission
+                    htmlTextareas.forEach(function(textarea) {
+                        if ($(textarea).summernote('codeview.isActivated')) {
+                            // If in code view, update the editor
+                            $(textarea).summernote('codeview.deactivate');
+                        }
+                        // Get the code and set it back to ensure it's saved
+                        const code = $(textarea).summernote('code');
+                        $(textarea).val(code);
+                    });
+                });
+            }
+        });
+    </script>
+    
+    <style>
+        /* Summernote Custom Styling */
+        .note-editor {
+            border-radius: 8px !important;
+            border: 1px solid #d1d5db !important;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+        }
+        .note-editor:focus-within {
+            border-color: #0a4d78 !important;
+            box-shadow: 0 0 0 3px rgba(10, 77, 120, 0.1) !important;
+        }
+        .note-toolbar {
+            background: #f9fafb !important;
+            border-bottom: 1px solid #e5e7eb !important;
+            padding: 8px !important;
+        }
+        .note-editable {
+            background: #ffffff !important;
+            min-height: 500px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            padding: 15px !important;
+        }
+        .note-editable:focus {
+            outline: none !important;
+        }
+        .note-statusbar {
+            background: #f9fafb !important;
+            border-top: 1px solid #e5e7eb !important;
+        }
+        /* Code view styling */
+        .note-codable {
+            font-family: 'Courier New', monospace !important;
+            font-size: 14px !important;
+            min-height: 500px !important;
+        }
+    </style>
 @endsection
 
