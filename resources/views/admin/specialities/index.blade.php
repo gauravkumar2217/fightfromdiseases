@@ -23,7 +23,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Icon</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -35,7 +35,11 @@
                     @forelse($specialities as $speciality)
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="text-3xl">{{ $speciality->icon ?? '🏥' }}</span>
+                            @if($speciality->image)
+                                <img src="{{ $speciality->image }}" alt="{{ $speciality->name }}" class="h-12 w-auto object-contain">
+                            @else
+                                <span class="text-gray-400 text-sm">No image</span>
+                            @endif
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm font-medium text-gray-900">{{ $speciality->name }}</div>

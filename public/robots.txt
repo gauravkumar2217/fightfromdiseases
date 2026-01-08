@@ -1,2 +1,35 @@
+# Robots.txt for Fight From Diseases
+# Allow all search engines to crawl the site
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /tests/
+Disallow: /.env
+Disallow: /.git
+Disallow: /composer.json
+Disallow: /package.json
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /health-resources
+Allow: /health-tips
+Allow: /disease-prevention
+Allow: /wellness-guide
+Allow: /faq
+Allow: /privacy-policy
+Allow: /terms-condition
+
+# Sitemap location (update with your actual sitemap URL)
+# Sitemap: https://www.yourdomain.com/sitemap.xml

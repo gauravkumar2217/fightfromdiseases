@@ -132,7 +132,7 @@
                     @if($hospital->logo)
                         <img src="{{ $hospital->logo }}" 
                              alt="{{ $hospital->name }}" 
-                             class="max-w-full max-h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                             class="max-w-full max-h-20 object-contain">
                     @else
                         <div class="text-center">
                             <p class="text-sm font-semibold text-gray-700">{{ $hospital->name }}</p>
@@ -161,7 +161,13 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 @forelse($specialities as $speciality)
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 slide-up border-l-4 border-[#0a4d78]">
-                    <div class="text-5xl mb-4">{{ $speciality->icon ?? '🏥' }}</div>
+                    @if($speciality->image)
+                        <div class="mb-4 flex items-center justify-center">
+                            <img src="{{ $speciality->image }}" alt="{{ $speciality->name }}" class="h-16 w-auto object-contain">
+                        </div>
+                    @else
+                        <div class="text-5xl mb-4 text-center">🏥</div>
+                    @endif
                     <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $speciality->name }}</h3>
                     <p class="text-gray-600 leading-relaxed">
                         {{ $speciality->description ?? 'World-class treatment with advanced technology and experienced medical professionals.' }}

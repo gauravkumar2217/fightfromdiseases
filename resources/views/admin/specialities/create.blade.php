@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="bg-white rounded-xl shadow-lg p-6">
-        <form action="{{ route('admin.specialities.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.specialities.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -25,20 +25,18 @@
                     @enderror
                 </div>
 
-                <!-- Icon -->
+                <!-- Image -->
                 <div>
-                    <label for="icon" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Icon (Emoji)
+                    <label for="image" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Speciality Image
                     </label>
-                    <input type="text" 
-                           id="icon" 
-                           name="icon" 
-                           value="{{ old('icon') }}"
-                           placeholder="🦴 or ❤️"
-                           maxlength="10"
+                    <input type="file" 
+                           id="image" 
+                           name="image" 
+                           accept="image/jpeg,image/jpg,image/png,image/webp"
                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0a4d78] focus:border-transparent transition-all duration-300">
-                    <p class="mt-1 text-xs text-gray-500">Enter an emoji or icon character (e.g., 🦴, ❤️, 🎗️)</p>
-                    @error('icon')
+                    <p class="mt-1 text-xs text-gray-500">Accepted formats: JPEG, JPG, PNG, WEBP (Max: 2MB). Upload an icon/image for this speciality.</p>
+                    @error('image')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
